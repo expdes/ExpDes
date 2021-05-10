@@ -1,0 +1,102 @@
+---
+title: "ExpDes: Experimental Designs Package"
+author: ""
+date: "10/05/2021"
+output: 
+  flexdashboard::flex_dashboard:
+  vertical_layout: scroll
+---
+
+# Pagina Inicial
+
+
+### ExpDes: Experimental Designs Package
+
+
+```{r, eval=FALSE, echo=FALSE}
+![](apresentação.jpeg)
+```
+
+
+
+Package for analysis of simple experimental designs (CRD, RBD and LSD), experiments in double factorial schemes (in CRD and RBD), experiments in a split plot in time schemes (in CRD and RBD), experiments in double factorial schemes with an additional treatment (in CRD and RBD), experiments in triple factorial scheme (in CRD and RBD) and experiments in triple factorial schemes with an additional treatment (in CRD and RBD), performing the analysis of variance and means comparison by fitting regression models until the third power (quantitative treatments) or by a multiple comparison test, Tukey test, test of Student-Newman-Keuls (SNK), Scott-Knott, Duncan test, t test (LSD) and Bonferroni t test (protected LSD) - for qualitative treatments; residual analysis (Ferreira, Cavalcanti and Nogueira, 2014) [<doi:10.4236/am.2014.519280>](https://doi.org/10.4236%2Fam.2014.519280).
+
+
+
+https://cran.r-project.org/web/packages/ExpDes/index.html
+
+
+------
+**Github**
+
+Code
+
+[https://github.com/ExpDes](https://github.com/denisnog/ExpDes)
+
+
+
+# Who we are
+
+
+### Eric Batista Ferreira 
+
+Professor at the Federal University of Alfenas (UNIFAL-MG), Department of Statistics. He works in postgraduate studies in the Applied Statistics and Biometrics program at UNIFAL-MG. Research in the areas of Sensometry and Applied Statistics.
+
+https://pessoas.unifal-mg.edu.br/ericferreira/
+
+
+### Denismar Alves Nogueira
+
+Professor at the Federal University of Alfenas (UNIFAL-MG), Department of Statistics. He works in postgraduate studies in the Applied Statistics and Biometrics program at UNIFAL-MG. Research in the areas of Experiment planning and analysis, Bayesian Statistics, Linear and Mixed Models and Applied Statistics.
+
+http://lattes.cnpq.br/3858924778362309
+
+
+### Portya Piscitelli Cavalcanti
+
+Data Science Analyst at Bradesco S.A. PhD student in Statistics and Agricultural Experimentation at the University of São Paulo (USP / ESALQ), with a sandwich course at the University of Otago (New Zealand).
+
+
+http://lattes.cnpq.br/7083340960201058
+
+
+# ExpDes
+
+
+
+:: **ExpDes** is a package for analysis of Experiments using Analysis of Variance in various designs and experimental schemes. It was developed to run the complete analysis in a single function. 
+
+:: Enables choice of treatment comparisons in a simple way
+
+:: Allows you to evaluate the model's assumptions with the normality and homoscedasticity test
+
+:: Access to Residuals and graphical analysis.
+
+# GExpDes
+
+### GExpDes - Interface Gráfica para o Pacote ExpDes
+
+
+The data generated from an experiment are analyzed according to Experimental Statistics methodologies. To carry out these analyzes, the use of the R language stands out, particularly with the **ExpDes** package. For those who do not want to worry about the R language, this work presents an application in **Shiny** that allows the use of the **ExpDes** and **labestData** packages. The interface reduces the complexity of the analysis, being an auxiliary for the assembly of the R language commands to perform it. At the end, the commands that were needed are also made available to the user.
+
+
+### Development team
+
+**Federal University Santa Catarina - UFSC**
+
+* Rogério Kormann (Agronomia) - rogerio.kormann@ufsc.br
+* Eduardo Nunes Rosa (Agronomia) - eduardo.nunes@grad.ufsc.br
+* Crysttian Arantes Paixão - crysttian.arantes.paixao@ufsc.br
+* Bruna Juliana Américo Machado (Medicina Veterinária)
+* Felipe Weber Ferrarez (Agronomia)
+* Amanda Mor (Medicina Veterinária)
+* Douglas Rufino Vaz (Engenharia Florestal)
+* Agradecimento especial João Vitor Berner Pereira (Agronomia)
+
+[**gexpdes.ufsc.br**](http://gexpdes.ufsc.br)
+
+
+#### code 
+
+https://github.com/gExpDes/gexpdes
+
