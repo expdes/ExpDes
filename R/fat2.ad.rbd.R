@@ -127,7 +127,7 @@ anavaT<-data.frame("DF"=c(glB,gla, glb, glab, glad, glE, glT ),
 "SS"=c(round(c(SQB,SQa,SQb,SQab,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMB,QMa,QMb,QMab,QMad,QME),5),''),
 "Fc"=c(round(c(FcB,Fca,Fcb,Fcab,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE), pv.fs, 1-pf(Fcab,glab,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE), pv.fs, 1-pf(Fcab,glab,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavaT)[5]="Pr>Fc"
 rownames(anavaT)=c("Block",fac.names[1],fac.names[2],paste(fac.names[1],'*',fac.names[2],sep=''),"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
@@ -271,7 +271,7 @@ anavad1<-data.frame("DF"=c(glB,glb, glf1, glad, glE, glT),
 "SS"=c(round(c(SQB,SQb,SQf1,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMB,QMb,QMf1,QMad,QME),5),''),
 "Fc"=c(round(c(FcB,Fcb,Fcf1,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE),1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE),1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavad1)[5]="Pr>Fc"
 rownames(anavad1)=c("Block",fac.names[2],rn,"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
@@ -360,7 +360,7 @@ anavad2<-data.frame("DF"=c(glB,gla, glf2, glad, glE, glT),
 "SS"=c(round(c(SQB,SQa,SQf2,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMB,QMa,QMf2,QMad,QME),5),''),
 "Fc"=c(round(c(FcB,Fca,Fcf2,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE),1-pf(Fca,gla,glE), 1-pf(Fcf2,glf2,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(FcB,glB,glE),1-pf(Fca,gla,glE), 1-pf(Fcf2,glf2,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavad2)[5]="Pr>Fc"
 rownames(anavad2)=c("Block",fac.names[1],rn,"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
