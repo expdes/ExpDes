@@ -128,7 +128,7 @@ anavaT<-data.frame("DF"=c(gla, glb, glab, glad, glE, glT ),
 "SS"=c(round(c(SQa,SQb,SQab,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMa,QMb,QMab,QMad,QME),5),''),
 "Fc"=c(round(c(Fca,Fcb,Fcab,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(pv.fs, 1-pf(Fcab,glab,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(pv.fs, 1-pf(Fcab,glab,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavaT)[5]="Pr>Fc"
 rownames(anavaT)=c(fac.names[1],fac.names[2],paste(fac.names[1],'*',fac.names[2],sep=''),"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
@@ -271,7 +271,7 @@ anavad1<-data.frame("DF"=c(glb, glf1, glad, glE, glT),
 "SS"=c(round(c(SQb,SQf1,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMb,QMf1,QMad,QME),5),''),
 "Fc"=c(round(c(Fcb,Fcf1,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavad1)[5]="Pr>Fc"
 rownames(anavad1)=c(fac.names[2],rn,"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
@@ -360,7 +360,7 @@ anavad2<-data.frame("DF"=c(gla, glf2, glad, glE, glT),
 "SS"=c(round(c(SQa,SQf2,SQad,SQE,SQT),5)),
 "MS"=c(round(c(QMa,QMf2,QMad,QME),5),''),
 "Fc"=c(round(c(Fca,Fcf2,Fcad),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(Fca,gla,glE), 1-pf(Fcf2,glf2,glE), 1-pf(Fcad,glad,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(Fca,gla,glE), 1-pf(Fcf2,glf2,glE), 1-pf(Fcad,glad,glE)),4),'', ''))
 colnames(anavad2)[5]="Pr>Fc"
 rownames(anavad2)=c(fac.names[1],rn,"Ad vs Factorial","Residuals","Total")
 cat('------------------------------------------------------------------------
