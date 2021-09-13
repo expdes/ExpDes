@@ -22,10 +22,10 @@
 #' models are adjusted. IF TRUE, non-linear regression models
 #' are adjusted.
 #' @param hvar Allows choosing the test for homogeneity of
-#' variances; the \emph{default} is the test of ONeill and
-#' Mathews ('oneillmathews'), however there are other options:
-#' test of Han ('han'), and the test of Anscombe and Tukey
-#' ('anscombetukey').
+#' variances; the \emph{default} is the test of Han ('han'), 
+#' however there are other options: test of ONeill and
+#' Mathews ('oneillmathews') for more than two treatments, and 
+#' the test of Anscombe and Tukey ('anscombetukey').
 #' @param sigT The signficance to be used for the multiple
 #' comparison test; the default is 5\%.
 #' @param sigF The signficance to be used for the F test of
@@ -63,7 +63,7 @@
 #' @export
 
 rbd <-function(treat, block, resp, quali=TRUE, mcomp='tukey', nl=FALSE,
-              hvar='oneillmathews', sigT=0.05, sigF=0.05) {
+              hvar='han', sigT=0.05, sigF=0.05) {
 
 Trat<-factor(treat)
 Bloco<-factor(block)
