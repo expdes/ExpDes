@@ -1,7 +1,8 @@
 #' Test for homogeneity of variances of ONeill and Mathews (RBD)
 #'
 #' \code{oneilldbc} Performs the test for homogeneity of
-#' variances of ONeill and Mathews (2002).
+#' variances of ONeill and Mathews (2002) for more than two
+#' treatments.
 #' @param trat Numeric or complex vector containing treatments.
 #' @param resp Numeric or complex vector containing the response
 #' variable.
