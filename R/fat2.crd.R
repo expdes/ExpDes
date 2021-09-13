@@ -202,7 +202,7 @@ anavad1<-data.frame("DF"=c(round(c(glb, glf1, glE, glT))),
 "SS"=c(round(c(SQb,SQf1,SQE,SQT),5)),
 "MS"=c(round(c(QMb,QMf1,QME),5),''),
 "Fc"=c(round(c(Fcb,Fcf1),4),'',''),
-"Pr>Fc"=c(round(c(1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(Fcb,glb,glE),1-pf(Fcf1,glf1,glE)),4),'', ''))
 rownames(anavad1)=c(fac.names[2],rn,"Residuals","Total")
 cat('------------------------------------------------------------------------
 Analysis of Variance Table\n------------------------------------------------------------------------\n')
@@ -293,7 +293,7 @@ anavad2<-data.frame("DF"=c(round(c(gla, glf2, glE, glT))),
 "SS"=c(round(c(SQa,SQf2,SQE,SQT),5)),
 "MS"=c(round(c(QMa,QMf2,QME),5),' '),
 "Fc"=c(round(c(Fca,Fcf2),4),' ',' '),
-"Pr>Fc"=c(round(c(1-pf(Fca,gla,glE),1-pf(Fcf2,glf2,glE)),4),' ', ' '))
+"Pr>Fc"=c(round(c(1-pf(Fca,gla,glE),1-pf(Fcf2,glf2,glE)),4),'', ''))
 rownames(anavad2)=c(fac.names[1],rn,"Residuals","Total")
 cat('------------------------------------------------------------------------
 Analysis of Variance Table\n------------------------------------------------------------------------\n')
