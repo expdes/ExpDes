@@ -67,7 +67,16 @@
 #' @export
 
 fat2.ad.crd <-
-function(factor1, factor2, repet, resp, respAd, quali=c(TRUE,TRUE), mcomp='tukey', fac.names=c('F1','F2'), sigT=0.05, sigF=0.05) {
+function(factor1,
+         factor2,
+         repet,
+         resp,
+         respAd,
+         quali=c(TRUE,TRUE),
+         mcomp='tukey',
+         fac.names=c('F1','F2'),
+         sigT=0.05,
+         sigF=0.05) {
 
 cat('------------------------------------------------------------------------\nLegend:\n')
 cat('FACTOR 1: ',fac.names[1],'\n')
@@ -77,8 +86,8 @@ cat('FACTOR 2: ',fac.names[2],'\n-----------------------------------------------
 fatores<-cbind(factor1,factor2)
 Fator1<-factor(factor1)
 Fator2<-factor(factor2)
-nv1<-length(summary(Fator1))   #Diz quantos niveis tem o fator 1.
-nv2<-length(summary(Fator2))   #Diz quantos niveis tem o fator 2.
+nv1<-length(summary(Fator1))
+nv2<-length(summary(Fator2))
 lf1<-levels(Fator1)
 lf2<-levels(Fator2)
 J=length(respAd)
@@ -155,10 +164,10 @@ x<-mean(respAd)
 y<-mean(resp)
 
 if(1-pf(Fcad,glad,glE)>sigF) { C1<-data.frame("Means"=c(x,y))
-                                  rownames(C1)=c("Additional","Factorial")
-                                  colnames(C1)<-c("Means")
-                                  cat('According to the F test, the means of the two groups are statistical equal.\n')
-                                  print(C1) }  else{
+rownames(C1)=c("Additional","Factorial")
+colnames(C1)<-c("Means")
+cat('According to the F test, the means of the two groups are statistical equal.\n')
+  print(C1) }  else{
 C2<-data.frame("Mean"=c(x,y),
 " "=c(letters[1],letters[2]))
 rownames(C2)=c("Additional","Factorial")
@@ -279,39 +288,38 @@ Analysis of Variance Table\n----------------------------------------------------
 print(anavad1)
 cat('------------------------------------------------------------------------\n\n')
 
-
 ii<-0
 for(i in 1:nv2) {
   ii<-ii+1
   if(1-pf(Fcf1,glf1,glE)[ii]<=sigF){
     if(quali[1]==TRUE){
-                      cat('\n\n',fac.names[1],' inside of the level ',lf2[i],' of ',fac.names[2],'
+cat('\n\n',fac.names[1],' inside of the level ',lf2[i],' of ',fac.names[2],'
 ------------------------------------------------------------------------')
-                        if(mcomp=='tukey'){
-                          tukey(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                          }
-                        if(mcomp=='duncan'){
-                          duncan(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                           }
-                        if(mcomp=='lsd'){
-                          lsd(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                        }
-                        if(mcomp=='lsdb'){
-                          lsdb(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                         }
-                        if(mcomp=='sk'){
-                          scottknott(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                       }
-                        if(mcomp=='snk'){
-                          snk(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                        }
-                        if(mcomp=='ccboot'){
-                          ccboot(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                        }
-                        if(mcomp=="ccF"){
-                          ccF(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
-                                        }
-                      }
+    if(mcomp=='tukey'){
+tukey(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+          }
+    if(mcomp=='duncan'){
+duncan(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+         }
+    if(mcomp=='lsd'){
+lsd(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+          }
+    if(mcomp=='lsdb'){
+lsdb(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+         }
+    if(mcomp=='sk'){
+scottknott(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+         }
+    if(mcomp=='snk'){
+snk(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+      }
+    if(mcomp=='ccboot'){
+ccboot(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+      }
+    if(mcomp=="ccF"){
+ccF(resp[Fator2==lf2[i]],fatores[,1][Fator2==lf2[i]],anavaT[5,1],anavaT[5,2],sigT)
+      }
+}
     else{  #regressao
     cat('\n\n',fac.names[1],' inside of the level ',lf2[i],' of ',fac.names[2],'
 ------------------------------------------------------------------------')
