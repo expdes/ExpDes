@@ -26,6 +26,10 @@
 #' comparison test; the default is 5\%.
 #' @param sigF The signficance to be used for the F test of
 #' ANOVA; the default is 5\%.
+#' @param unfold Says what must be done after the ANOVA.
+#' If NULL (\emph{default}), recommended tests are performed;
+#' if '0', just ANOVA is performed; if '1', the simple effects
+#' are tested; if '2', the double interaction is unfolded.
 #' @details The arguments sigT and mcomp will be used only
 #' when the treatment are qualitative.
 #' @return The output contains the ANOVA of the referred
@@ -43,7 +47,7 @@
 #' @note The \code{\link{graphics}} can be used to
 #' construct regression plots and \code{\link{plotres}}
 #' for residuals plots.
-#' @seealso \code{\link{fat2.rbd}}, \code{\link{fat3.rbd}},
+#' @seealso \code{\link{fat3.rbd}},
 #' \code{\link{split2.rbd}}, \code{\link{strip}},
 #' \code{\link{fat2.ad.rbd}} and \code{\link{fat3.ad.rbd}}.
 #' @examples
@@ -51,12 +55,19 @@
 #' attach(ex5)
 #' fat2.rbd(trat, genero, bloco, sabor ,quali =
 #' c(TRUE,TRUE), mcomp = "lsd", fac.names = c("Samples",
-#' "Gender"), sigT = 0.05, sigF = 0.05)
+#' "Gender"), sigT = 0.05, sigF = 0.05, unfold=NULL)
 #' @export
 
-fat2.rbd <-
-function(factor1, factor2, block, resp, quali=c(TRUE,TRUE), mcomp='tukey', fac.names=c('F1','F2'), sigT=0.05, sigF=0.05) {
-
+fat2.rbd <- function(factor1,
+                     factor2,
+                     block,
+                     resp,
+                     quali=c(TRUE,TRUE),
+                     mcomp='tukey',
+                     fac.names=c('F1','F2'),
+                     sigT=0.05,
+                     sigF=0.05,
+                     unfold=NULL) {
 
 cat('------------------------------------------------------------------------\nLegend:\n')
 cat('FACTOR 1: ',fac.names[1],'\n')
@@ -92,8 +103,14 @@ if(pvalor.shapiro<0.05){cat('WARNING: at 5% of significance, residuals can not b
 else{cat('According to Shapiro-Wilk normality test at 5% of significance, residuals can be considered normal.
 ------------------------------------------------------------------------\n')}
 
+# Creating unfold #########################################
+if(is.null(unfold)){
+  if(tab[[1]][4,5]>sigF)  {unfold<-c(unfold,1)}
+  if(tab[[1]][4,5]<=sigF) {unfold<-c(unfold,2)}
+}
+
 #Para interacao nao significativa, fazer...
-if(tab[[1]][4,5]>sigF) {
+if(any(unfold==1)) {
 cat('\nNo significant interaction: analyzing the simple effect
 ------------------------------------------------------------------------\n')
 fatores<-data.frame('fator 1'=factor1,'fator 2' = factor2)
@@ -152,15 +169,13 @@ mean.table<-tapply.stat(resp,fatores[,i],mean)
 colnames(mean.table)<-c('Levels','Means')
 print(mean.table)
 cat('------------------------------------------------------------------------')
-                            }
-
+}
 cat('\n')
 }
-
 }
 
 #Se a interacao for significativa, desdobrar a interacao
-if(tab[[1]][4,5]<=sigF){
+if(any(unfold==2)) {
 cat("\n\n\nSignificant interaction: analyzing the interaction
 ------------------------------------------------------------------------\n")
 

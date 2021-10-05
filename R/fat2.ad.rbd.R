@@ -29,6 +29,10 @@
 #' comparison test; the default is 5\%.
 #' @param sigF The signficance to be used for the F test
 #' of ANOVA; the default is 5\%.
+#' @param unfold Says what must be done after the ANOVA.
+#' If NULL (\emph{default}), recommended tests are performed;
+#' if '0', just ANOVA is performed; if '1', the simple effects
+#' are tested; if '2', the double interaction is unfolded.
 #' @details The arguments sigT and mcomp will be used only
 #' when the treatment are qualitative.
 #' @return The output contains the ANOVA of the referred
@@ -49,7 +53,7 @@
 #' for residuals plots.
 #' @seealso \code{\link{fat2.crd}}, \code{\link{fat2.rbd}},
 #' \code{\link{fat3.crd}}, \code{\link{fat3.rbd}},
-#' \code{\link{fat2.ad.crd}}, \code{\link{fat2.ad.rbd}},
+#' \code{\link{fat2.ad.crd}},
 #' \code{\link{fat3.ad.crd}} and \code{\link{fat3.ad.rbd}}.
 #' @examples
 #' data(ex7)
@@ -57,11 +61,21 @@
 #' data(est21Ad)
 #' fat2.ad.rbd(periodo, nivel, bloco, est21, est21Ad,
 #' quali=c(TRUE, FALSE), mcomp = "tukey", fac.names =
-#' c("Period", "Level"), sigT = 0.05, sigF = 0.05)
+#' c("Period", "Level"), sigT = 0.05, sigF = 0.05,
+#' unfold=NULL)
 #' @export
 
-fat2.ad.rbd <-
-function(factor1, factor2, block, resp, respAd, quali=c(TRUE,TRUE), mcomp='tukey', fac.names=c('F1','F2'), sigT=0.05, sigF=0.05) {
+fat2.ad.rbd <- function(factor1,
+                        factor2,
+                        block,
+                        resp,
+                        respAd,
+                        quali=c(TRUE,TRUE),
+                        mcomp='tukey',
+                        fac.names=c('F1','F2'),
+                        sigT=0.05,
+                        sigF=0.05,
+                        unfold=NULL) {
 
 cat('------------------------------------------------------------------------\nLegend:\n')
 cat('FACTOR 1: ',fac.names[1],'\n')
@@ -71,8 +85,8 @@ fatores<-cbind(factor1,factor2)
 Fator1<-factor(factor1)
 Fator2<-factor(factor2)
 Block<-factor(block)
-nv1<-length(summary(Fator1))   #Diz quantos niveis tem o fator 1.
-nv2<-length(summary(Fator2))   #Diz quantos niveis tem o fator 2.
+nv1<-length(summary(Fator1))
+nv2<-length(summary(Fator2))
 lf1<-levels(Fator1)
 lf2<-levels(Fator2)
 J=length(respAd)
@@ -138,7 +152,6 @@ cat('------------------------------------------------------------------------\n'
 cv<-round(sqrt(QME)/mean(col3)*100, 2)
 cat('CV =',cv,'%\n')
 
-
 #Teste de normalidade
 pvalor.shapiro<-shapiro.test(anava$residuals)$p.value
 cat('\n------------------------------------------------------------------------\nShapiro-Wilk normality test\n')
@@ -167,8 +180,14 @@ print(C2)
 }
 cat('------------------------------------------------------------------------\n')
 
+# Creating unfold #########################################
+if(is.null(unfold)){
+  if(1-pf(Fcab,glab,glE)>sigF){unfold<-c(unfold,1)}
+  if(1-pf(Fcab,glab,glE)<=sigF) {unfold<-c(unfold,2)}
+}
+
 #Para interacao nao significativa, fazer...
-if(1-pf(Fcab,glab,glE)>sigF) {
+if(any(unfold==1)) {
 cat('\nNo significant interaction: analyzing the simple effect
 ------------------------------------------------------------------------\n')
 fatores<-data.frame('fator 1'=factor1,'fator 2' = factor2)
@@ -235,7 +254,7 @@ cat('\n')
 }
 
 #Se a interacao for significativa, desdobrar a interacao
-if(1-pf(Fcab,glab,glE)<=sigF){
+if(any(unfold==1)) {
 cat("\n\n\nSignificant interaction: analyzing the interaction
 ------------------------------------------------------------------------\n")
 
